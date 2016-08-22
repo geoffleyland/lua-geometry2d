@@ -1,7 +1,8 @@
 --- @module nz.co.incremental.geometry2d.polylines
 -- (c) Copyright 2013-2016 Geoff Leyland.
+-- See LICENSE for license information
 
-local P = require"nz.co.incremental.geometry2d.primitives"
+local P = require"geometry2d.primitives"
 
 local math_huge, math_min, math_max, math_sqrt =
       math.huge, math.min, math.max, math.sqrt

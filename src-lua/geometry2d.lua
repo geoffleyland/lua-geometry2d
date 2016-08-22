@@ -1,9 +1,10 @@
 --- @module nz.co.incremental.geometry2d
 -- (c) Copyright 2013-2016 Geoff Leyland.
+-- See LICENSE for license information
 
-local primitives = require"nz.co.incremental.geometry2d.primitives"
-local polylines = require"nz.co.incremental.geometry2d.polylines"
-local polygons = require"nz.co.incremental.geometry2d.polygons"
+local primitives = require"geometry2d.primitives"
+local polylines = require"geometry2d.polylines"
+local polygons = require"geometry2d.polygons"
 
 local geometry2d = {}
 geometry2d.__index = geometry2d

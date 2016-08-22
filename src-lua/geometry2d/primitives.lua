@@ -1,5 +1,6 @@
 --- @module nz.co.incremental.geometry2d.primitives
 -- (c) Copyright 2013-2016 Geoff Leyland.
+-- See LICENSE for license information
 
 local math_abs, math_sqrt =
       math.abs, math.sqrt

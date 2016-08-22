@@ -20,9 +20,9 @@ build =
   type = "builtin",
   modules =
   {
-    ["nz.co.incremental.geometry2d"] = "src-lua/geometry2d.lua",
-    ["nz.co.incremental.geometry2d.primitives"] = "src-lua/geometry2d/primitives.lua",
-    ["nz.co.incremental.geometry2d.polylines"] = "src-lua/geometry2d/polylines.lua",
-    ["nz.co.incremental.geometry2d.polygons"] = "src-lua/geometry2d/polygons.lua",
+    ["geometry2d"] = "src-lua/geometry2d.lua",
+    ["geometry2d.primitives"] = "src-lua/geometry2d/primitives.lua",
+    ["geometry2d.polylines"] = "src-lua/geometry2d/polylines.lua",
+    ["geometry2d.polygons"] = "src-lua/geometry2d/polygons.lua",
   },
 }
