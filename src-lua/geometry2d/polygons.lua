@@ -75,6 +75,15 @@ function polygons.centroid(p, first, last, X, Y)
 end
 
 
+function polygons.area(p, first, last, X, Y)
+  local area = p[first][X] * (p[first+1][Y] - p[last-1][Y])
+  for i = first + 1, last -1 do
+    area = area + p[i][X] * (p[i+1][Y] - p[i-1][Y])
+  end
+  return area * 0.5
+end
+
+
 ------------------------------------------------------------------------------
 
 return polygons

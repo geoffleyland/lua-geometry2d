@@ -114,6 +114,11 @@ function geometry2d:polygon_centroid(p, n)
 end
 
 
+function geometry2d:polygon_area(p, n)
+  return polygons.area(self:_std_args(p, n))
+end
+
+
 ------------------------------------------------------------------------------
 
 return geometry2d
