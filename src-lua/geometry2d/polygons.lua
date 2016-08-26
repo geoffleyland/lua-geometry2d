@@ -45,7 +45,7 @@ function polygons.orientation(p, first, last, X, Y)
     end
   end
 
-  local prev, next = imin == first and n - END - 1 or imin - 1, imin + 1
+  local prev, next = imin == first and last - 1 or imin - 1, imin + 1
   local l = P.to_left(p[next][X], p[next][Y],
                     p[prev][X], p[prev][Y], p[imin][X], p[imin][Y])
 
