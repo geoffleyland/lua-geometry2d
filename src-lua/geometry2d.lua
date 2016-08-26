@@ -98,8 +98,9 @@ function geometry2d:polygon_orientation(p, n)
   return polygons.orientation(self:_std_args(p, n))
 end
 
+
 function geometry2d:polygon_centroid(p, n)
-  return polygons.polygon_centroid(self:_std_args(p, n))
+  return polygons.centroid(self:_std_args(p, n))
 end
 
 
