@@ -87,6 +87,16 @@ function geometry2d:polyline_to_polyline(p1, p2, n1, n2)
 end
 
 
+function geometry2d:reverse_points(p, n)
+  return polylines.reverse_points(self:_std_args(p, n))
+end
+
+
+function geometry2d:reverse_coordinates(p, n)
+  return polylines.reverse_coordinates(self:_std_args(p, n))
+end
+
+
 ------------------------------------------------------------------------------
 
 function geometry2d:inside_polygon(x, y, p, n)
