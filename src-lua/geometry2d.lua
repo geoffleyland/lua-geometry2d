@@ -12,6 +12,8 @@ geometry2d.__index = geometry2d
 
 ------------------------------------------------------------------------------
 
+-- luacheck: push no self
+
 function geometry2d:new(X, Y, BASE, SMALL)
   return setmetatable(
     {
@@ -54,6 +56,7 @@ function geometry2d:segment_to_segment(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)
   return primitives.segment_to_segment(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2)
 end
 
+-- luacheck: pop
 
 ------------------------------------------------------------------------------
 
