@@ -160,7 +160,7 @@ local function segment_to_segment_squared(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2
 end
 
 
-function segment_to_segment(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2, SMALL)
+local function segment_to_segment(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2, SMALL)
   local d2, ax, ay, bx, by, sc, tc =
     segment_to_segment_squared(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2, SMALL)
   return math_sqrt(d2), ax, ay, bx, by, sc, tc
