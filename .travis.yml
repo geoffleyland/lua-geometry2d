@@ -23,7 +23,7 @@ install:
 script:
   - luacheck src-lua
   - luacheck --std max+busted spec
-  - busted --run=travis --coverage
+  - busted --run=travis --coverage .
 
 after_success:
   - luacov-coveralls -i src%-lua
