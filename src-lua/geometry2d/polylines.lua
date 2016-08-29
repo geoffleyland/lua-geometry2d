@@ -85,12 +85,13 @@ end
 
 local function order_segments(p1, p2, first1, last1, first2, last2, X, Y)
   local p1xmin, p1ymin, p1xmax, p1ymax = bounds_from_points(p1, first1, last1, X, Y)
-  local order = {}
+  local order, count = {}, 0
   for i = first2, last2 - 1 do
     local d = math.min(
       quick_point_to_bounds(p2[i][X], p2[i][Y], p1xmin, p1ymin, p1xmax, p1ymax),
       quick_point_to_bounds(p2[i+1][X], p2[i+1][Y], p1xmin, p1ymin, p1xmax, p1ymax))
-    order[i + END] = { d2 = d*d, index = i }
+    count = count + 1
+    order[count] = { d2 = d*d, index = i }
   end
   table.sort(order, function(a, b) return a.d2 < b.d2 end)
   return order
