@@ -137,7 +137,7 @@ function polylines.reverse_points(points, first, last)
 end
 
 
-function polylines.reverse_coordinates(points, first, last, x, y)
+function polylines.reverse_coordinates(points, first, last, X, Y)
   for i = 0, math.floor((last - first - 1)/2) do
     points[first+i][X], points[last-i][X] = points[last-i][X], points[first+i][X]
     points[first+i][Y], points[last-i][Y] = points[last-i][Y], points[first+i][Y]
