@@ -113,7 +113,7 @@ local function segment_to_segment_squared(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2
   local e = vx*wx + vy*wy
   local D = a*c - b*b
   local sD, tD = D, D
-  local SN, tN
+  local sN, tN
 
   if D < SMALL then           -- lines are parallel
     sN, sD = 0, 1
