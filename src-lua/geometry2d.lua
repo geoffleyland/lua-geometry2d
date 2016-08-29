@@ -41,7 +41,7 @@ end
 
 
 function geometry2d:left_normal(x1, y1, x2, y2)
-  return primitives.left_normal(x1, y2, x2, y2)
+  return primitives.left_normal(x1, y1, x2, y2)
 end
 
 
