@@ -83,8 +83,8 @@ end
 --  @return y coordinate of nearest point on the segment
 --  @return the "location" (p1=0, p2=1) of the nearest point on the segment
 local function point_to_segment(x, y, x1, y1, x2, y2)
-  local d, x, y, w = point_to_segment_squared(x, y, x1, y1, x2, y2)
-  return math_sqrt(d), x, y, w
+  local d, xr, yr, w = point_to_segment_squared(x, y, x1, y1, x2, y2)
+  return math_sqrt(d), xr, yr, w
 end
 
 
