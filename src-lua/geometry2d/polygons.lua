@@ -36,20 +36,20 @@ end
 --  it is to the left or right of the line segment joining the points
 --  surrounding it.
 --  @return "clockwise", "counterclockwise"
-function polygons.orientation(p, first, last, X, Y)
-  local imin, xmin, ymin = first, p[first][X], p[first][Y]
+function polygons.orientation(points, first, last, X, Y)
+  local imin, xmin, ymin = first, points[first][X], points[first][Y]
   for i = first + 1, last - 1 do
-    if p[i][Y] < ymin or
-       (p[i][Y] == ymin and p[i][X] > xmin) then
+    if points[i][Y] < ymin or
+       (points[i][Y] == ymin and points[i][X] > xmin) then
       imin = i
-      xmin, ymin = p[i][X], p[i][Y]
+      xmin, ymin = points[i][X], points[i][Y]
     end
   end
 
   local prev, next = imin == first and last - 1 or imin - 1, imin + 1
-  local l = P.to_left(p[imin][X], p[imin][Y],
-                      p[prev][X], p[prev][Y],
-                      p[next][X], p[next][Y])
+  local l = P.to_left(points[imin][X], points[imin][Y],
+                      points[prev][X], points[prev][Y],
+                      points[next][X], points[next][Y])
 
   if l < 0 then return "counterclockwise"
   elseif l > 0 then return "clockwise"
@@ -59,11 +59,11 @@ end
 
 ------------------------------------------------------------------------------
 
-function polygons.centroid(p, first, last, X, Y)
+function polygons.centroid(points, first, last, X, Y)
   local x, y, A = 0, 0, 0
 
   for i = first, last - 1 do
-    local p, q = p[i], p[i+1]
+    local p, q = points[i], points[i+1]
     local z = (p[X]*q[Y] - q[X]*p[Y])
     A = A + z
     x = x + z * (p[X] + q[X])
@@ -77,10 +77,10 @@ function polygons.centroid(p, first, last, X, Y)
 end
 
 
-function polygons.area(p, first, last, X, Y)
-  local area = p[first][X] * (p[first+1][Y] - p[last-1][Y])
+function polygons.area(points, first, last, X, Y)
+  local area = points[first][X] * (points[first+1][Y] - points[last-1][Y])
   for i = first + 1, last -1 do
-    area = area + p[i][X] * (p[i+1][Y] - p[i-1][Y])
+    area = area + points[i][X] * (points[i+1][Y] - points[i-1][Y])
   end
   return area * 0.5
 end
