@@ -41,13 +41,15 @@ function polygons.orientation(p, first, last, X, Y)
   for i = first + 1, last - 1 do
     if p[i][Y] < ymin or
        (p[i][Y] == ymin and p[i][X] > xmin) then
+      imin = i
       xmin, ymin = p[i][X], p[i][Y]
     end
   end
 
   local prev, next = imin == first and last - 1 or imin - 1, imin + 1
-  local l = P.to_left(p[next][X], p[next][Y],
-                    p[prev][X], p[prev][Y], p[imin][X], p[imin][Y])
+  local l = P.to_left(p[imin][X], p[imin][Y],
+                      p[prev][X], p[prev][Y],
+                      p[next][X], p[next][Y])
 
   if l < 0 then return "counterclockwise"
   elseif l > 0 then return "clockwise"
