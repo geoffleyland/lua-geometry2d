@@ -1,5 +1,8 @@
 # lua-geometry2d - 2D Geometry Algorithms for Lua
 
+[![Build Status](https://travis-ci.org/geoffleyland/lua-geometry2d.svg?branch=master)](https://travis-ci.org/geoffleyland/lua-geometry2d)
+[![Coverage Status](https://coveralls.io/repos/github/geoffleyland/lua-geometry2d/badge.svg?branch=master)](https://coveralls.io/github/geoffleyland/lua-geometry2d?branch=master)
+
 ## 1. What?
 
 geometry2d is a pure Lua implementation of some 2d geometric algorithms:
