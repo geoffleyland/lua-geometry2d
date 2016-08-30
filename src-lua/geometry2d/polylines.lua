@@ -105,8 +105,8 @@ function polylines.closest_approach(p1, p2, first1, last1, first2, last2, X, Y, 
   local d2 = math_huge
   local x1, y1, x2, y2, w1, w2, i1, i2
 
-  local length_o2 = last2-first2-1
-  for i = 1, last1-first1-1 do
+  local length_o2 = last2-first2
+  for i = 1, last1-first1 do
     if o1[i].d2 > d2 then break end
     local ii = o1[i].index
     for j = 1, length_o2 do
