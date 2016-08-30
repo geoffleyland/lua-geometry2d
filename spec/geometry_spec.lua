@@ -1,3 +1,5 @@
+-- luacheck: std max+busted
+
 
 describe("Primitives", function()
   local G2D, G2D12
@@ -109,6 +111,34 @@ describe("Polylines", function()
 
   test("polyline_length", function()
     assert.equal(2, G2D12:polyline_length({{0,0}, {1,0}, {1,1}}))
+    assert.equal(math.sqrt(8), G2D12:polyline_length({{0,0}, {1,1}, {2,0}}))
+  end)
+
+  test("polyline_length_to", function()
+    assert.equal(2,   G2D12:polyline_length_to({{0,0}, {1,0}, {1,1}}, 3, 0))
+    assert.equal(1,   G2D12:polyline_length_to({{0,0}, {1,0}, {1,1}}, 2, 0))
+    assert.equal(1.5, G2D12:polyline_length_to({{0,0}, {1,0}, {1,1}}, 2, 0.5))
+  end)
+
+  test("point_to_polyline", function()
+    assert.equal(math.sqrt(0.5), G2D12:point_to_polyline(0, 0, {{0,1},{1,0}}))
+    assert.equal(1, G2D12:point_to_polyline(0, 0, {{2,0},{2,1},{-2,1}}))
+  end)
+
+  test("polyline_to_polyline", function()
+    assert.equal(1, G2D12:polyline_to_polyline({{0,0},{1,0},{2,0},{3,0}}, {{0,1},{1,1},{3,1}}))
+    assert.equal(1, G2D12:polyline_to_polyline({{0,0},{1,0},{2,1},{3,0}}, {{0,3},{1,2},{3,2}}))
+    assert.equal(0, G2D12:polyline_to_polyline({{0,0},{1,1},{5,5}}, {{0,5},{1,4},{5,0}}))
+  end)
+
+  test("reverse_points", function()
+    assert.are_same({{1,0},{0,0}}, G2D12:reverse_points({{0,0},{1,0}}))
+    assert.are_same({{2,0},{1,0},{0,0}}, G2D12:reverse_points({{0,0},{1,0},{2,0}}))
+  end)
+
+  test("reverse_coordinates", function()
+    assert.are_same({{1,0},{0,0}}, G2D12:reverse_coordinates({{0,0},{1,0}}))
+    assert.are_same({{2,0},{1,0},{0,0}}, G2D12:reverse_coordinates({{0,0},{1,0},{2,0}}))
   end)
 end)
 
