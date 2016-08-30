@@ -59,6 +59,7 @@ end
 
 ------------------------------------------------------------------------------
 
+--- Compute the centroid of a polygon
 function polygons.centroid(points, first, last, X, Y)
   local x, y, A = 0, 0, 0
 
@@ -77,10 +78,13 @@ function polygons.centroid(points, first, last, X, Y)
 end
 
 
+--- Compute the area of a polygon.
+--  A clockwise-wound polygon has a positive area,
+--  and a counter-clockwise wound polygon has a negative area.
 function polygons.area(points, first, last, X, Y)
-  local area = points[first][X] * (points[first+1][Y] - points[last-1][Y])
+  local area = points[first][X] * (points[last-1][Y] - points[first+1][Y])
   for i = first + 1, last -1 do
-    area = area + points[i][X] * (points[i+1][Y] - points[i-1][Y])
+    area = area + points[i][X] * (points[i-1][Y] - points[i+1][Y])
   end
   return area * 0.5
 end
