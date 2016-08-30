@@ -45,7 +45,6 @@ Lua >= 5.1 or LuaJIT >= 2.0.0.
 
 ## 6. Wishlist
 
-+ Tests?
 + Documentation?
 
 ## 6. Alternatives
