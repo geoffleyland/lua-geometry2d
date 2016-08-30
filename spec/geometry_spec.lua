@@ -1,7 +1,5 @@
 -- luacheck: std max+busted
 
-local pretty = require"pl.pretty"
-
 describe("Primitives", function()
   local G2D, G2D12
  
