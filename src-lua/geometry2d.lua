@@ -73,7 +73,7 @@ end
 
 
 function geometry2d:polyline_length_to(p, i, w)
-  return polylines.length(p, self.BASE, i, w, self.X, self.Y)
+  return polylines.length_to(p, self.BASE, i, w, self.X, self.Y)
 end
 
 
