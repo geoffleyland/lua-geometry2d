@@ -1,5 +1,6 @@
 -- luacheck: std max+busted
 
+local pretty = require"pl.pretty"
 
 describe("Primitives", function()
   local G2D, G2D12
@@ -150,14 +151,61 @@ describe("Polygons", function()
   setup(function()
     G2D = require"geometry2d"
     G2D12 = G2D:new(1, 2, 1)
-    squares =
-    {
-      { { -1, -1 }, { -1, 1 }, { 1, 1 }, { 1, -1 }, { -1, -1 } }
-    }
+    local square_data = {{ -1, -1 }, { -1, 1 }, { 1, 1 }, { 1, -1 }}
+    squares = {}
+    for i = 1, 4 do
+      squares[i] = {}
+      for j = 1, 5 do
+        squares[i][j] = square_data[(i + j - 2) % 4 + 1]
+      end
+    end
+    for i = 5, 8 do
+      squares[i] = {}
+      for j = 1, 5 do
+        squares[i][j] = square_data[-(i + j - 2) % 4 + 1]
+      end
+    end
   end)
 
-  test("orientation", function()
-    assert.equal("clockwise", G2D12:polygon_orientation(squares[1]))
+  test("inside_polygon", function()
+    for _, p in ipairs{{0,0},{0.9,0.9}} do
+      for i = 1, 8 do
+        assert(G2D12:inside_polygon(p[1], p[2], squares[i]))
+      end
+    end
+
+    for _, p in ipairs{{2,2},{0,1.1},{1.1,1.1}} do
+      for i = 1, 8 do
+        assert(not G2D12:inside_polygon(p[1], p[2], squares[i]))
+      end
+    end
   end)
+
+  test("polygon_orientation", function()
+    assert.equal("degenerate", G2D12:polygon_orientation({{0,0},{0,1},{0,0}}))
+    for i = 1, 4 do
+      assert.equal("clockwise", G2D12:polygon_orientation(squares[i]))
+    end
+    for i = 5, 8 do
+      assert.equal("counterclockwise", G2D12:polygon_orientation(squares[i]))
+    end
+  end)
+
+  test("polygon_centroid", function()
+    for i = 1, 8 do
+      assert.are.same({0,0}, { G2D12:polygon_centroid(squares[i]) })
+    end
+  end)
+
+  test("polygon_area", function()
+    assert.equal(0, G2D12:polygon_area({{0,0},{0,1},{0,0}}))
+    for i = 1, 4 do
+      assert.equal(4, G2D12:polygon_area(squares[i]))
+    end
+    for i = 5, 8 do
+      assert.equal(-4, G2D12:polygon_area(squares[i]))
+    end
+  end)
+
 
 end)
