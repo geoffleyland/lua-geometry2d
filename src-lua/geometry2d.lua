@@ -5,6 +5,7 @@
 local primitives = require"geometry2d.primitives"
 local polylines = require"geometry2d.polylines"
 local polygons = require"geometry2d.polygons"
+local offset = require"geometry2d.polyline_offset"
 
 local geometry2d = {}
 geometry2d.__index = geometry2d
@@ -119,6 +120,18 @@ end
 
 function geometry2d:polygon_area(p, n)
   return polygons.area(self:_std_args(p, n))
+end
+
+
+------------------------------------------------------------------------------
+
+function geometry2d:offset_polyline(p, d, n)
+  return offset.offset(p, d, false, self.BASE, (n or #p) + self.BASE - 1, self.X, self.Y)
+end
+
+
+function geometry2d:offset_polygon(p, d, n)
+  return offset.offset(p, d, true, self.BASE, (n or #p) + self.BASE - 1, self.X, self.Y)
 end
 
 
