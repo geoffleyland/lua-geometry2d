@@ -120,10 +120,12 @@ local function intersection(p1, n1, p2, n2)
   local x2, y2 = p2[1], p2[2]
   local dx2, dy2 = n2[2], -n2[1]
 
-  local w = ((x2 - x1) * dy2 - (y2 - y1) * dx2) / (dx1*dy2 - dy1*dx2)
+  local den = dx1*dy2 - dy1*dx2
   -- if the lines are too parallel, then we don't need the intermediate point
   -- at all.
-  if math.abs(w) > 10 then return end
+  if math.abs(den) < 0.1 then return end
+
+  local w = ((x2 - x1) * dy2 - (y2 - y1) * dx2) / den
   return { x1 + w * dx1, y1 + w * dy1 }
 end
 
