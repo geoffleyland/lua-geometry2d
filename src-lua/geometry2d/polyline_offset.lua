@@ -7,8 +7,6 @@
 local math_abs, math_atan2, math_cos, math_floor, math_pi, math_sin, math_sqrt =
       math.abs, math.atan2, math.cos, math.floor, math.pi, math.sin, math.sqrt
 
-local pretty = require"pl.pretty"
-
 
 ------------------------------------------------------------------------------
 
@@ -250,11 +248,6 @@ local function offset(points, d, polygon, first, last, X, Y)
       [X] = points[i][1] + d * directions[i][1],
       [Y] = points[i][2] + d * directions[i][2]
     }
-    if result[first+i-1][X] == -1/0 then
-      print(pretty.write(result[first+i-1]))
-      print(pretty.write(directions[i]))
-      print(pretty.write(points[i]))
-    end
   end
 
   return result
