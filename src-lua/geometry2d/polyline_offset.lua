@@ -7,6 +7,8 @@
 local math_abs, math_atan2, math_cos, math_floor, math_pi, math_sin, math_sqrt =
       math.abs, math.atan2, math.cos, math.floor, math.pi, math.sin, math.sqrt
 
+local pretty = require"pl.pretty"
+
 
 ------------------------------------------------------------------------------
 
@@ -119,6 +121,9 @@ local function intersection(p1, n1, p2, n2)
   local dx2, dy2 = n2[2], -n2[1]
 
   local w = ((x2 - x1) * dy2 - (y2 - y1) * dx2) / (dx1*dy2 - dy1*dx2)
+  -- if the lines are too parallel, then we don't need the intermediate point
+  -- at all.
+  if math.abs(w) > 10 then return end
   return { x1 + w * dx1, y1 + w * dy1 }
 end
 
@@ -214,9 +219,12 @@ local function offset(points, d, polygon, first, last, X, Y)
         -- with a point at the intersection of the surrounding kept segments.
         while not keep[j] and j <= #keep do j = j + 1 end
         if keep[j] then
-          new_normals[#new_normals+1] = normals[j]
-          new_points[#new_points+1] = intersection(points[i], normals[i], points[j], normals[j])
-          new_directions[#new_directions+1] = direction(normals, i, j)
+          local new_point = intersection(points[i], normals[i], points[j], normals[j])
+          if new_point then
+            new_points[#new_points+1] = new_point
+            new_normals[#new_normals+1] = normals[j]
+            new_directions[#new_directions+1] = direction(normals, i, j)
+          end
         else
           new_directions[#new_directions+1] = normals[i]
           new_points[#new_points+1] = points[i+1]
@@ -240,6 +248,11 @@ local function offset(points, d, polygon, first, last, X, Y)
       [X] = points[i][1] + d * directions[i][1],
       [Y] = points[i][2] + d * directions[i][2]
     }
+    if result[first+i-1][X] == -1/0 then
+      print(pretty.write(result[first+i-1]))
+      print(pretty.write(directions[i]))
+      print(pretty.write(points[i]))
+    end
   end
 
   return result
