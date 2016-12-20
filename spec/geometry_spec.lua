@@ -2,7 +2,7 @@
 
 describe("Primitives", function()
   local G2D, G2D12
- 
+
   setup(function()
     G2D = require"geometry2d"
     G2D12 = G2D:new(1, 2, 1)

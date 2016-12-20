@@ -112,7 +112,7 @@ function polylines.closest_approach(p1, p2, first1, last1, first2, last2, X, Y, 
     for j = 1, length_o2 do
       if o2[j].d2 > d2 then break end
       local jj = o2[j].index
-      local d2t, x1t, y1t, x2t, y2t, w1t, w2t = 
+      local d2t, x1t, y1t, x2t, y2t, w1t, w2t =
         P.segment_to_segment_squared(
           p1[ii][X], p1[ii][Y], p1[ii+1][X], p1[ii+1][Y],
           p2[jj][X], p2[jj][Y], p2[jj+1][X], p2[jj+1][Y], SMALL)

@@ -129,7 +129,7 @@ local function segment_to_segment_squared(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2
       tN, tD = e + b, c
     end
   end
-  
+
   if tN < 0 then              -- tc < 0 => the t == 0 edge is visible
     tN = 0
     if     -d < 0 then sN = 0
