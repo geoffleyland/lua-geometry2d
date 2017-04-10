@@ -253,7 +253,8 @@ local function offset(points, d, polygon, first, last, X, Y)
   -- This is a bit of a nasty hack.  If the input is a closed polygon, then
   -- make sure the output is too.  This should happen anyway, but sometimes
   -- it doesn't.  I need to work out why.
-  if points[1][1] == points[#points][1] and
+  if points[1] and result[first] and
+     points[1][1] == points[#points][1] and
      points[1][2] == points[#points][2] and
      (result[first][X] ~= result[#result][X] or
       result[first][Y] ~= result[#result][Y]) then
