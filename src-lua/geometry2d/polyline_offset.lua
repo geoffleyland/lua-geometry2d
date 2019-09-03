@@ -130,7 +130,11 @@ end
 
 local function offset(points, d, polygon, first, last, X, Y)
   if d == 0 then
-    return points
+    local map = {}
+      for i = first, last do
+        map[i] = i
+      end
+    return points, map
   end
 
   -- The easiest thing to do here is just take a copy of the polyline
@@ -146,6 +150,12 @@ local function offset(points, d, polygon, first, last, X, Y)
     points = p2
   else
     length = last - first + 1
+  end
+
+  -- Number all the points, so we can return a table telling us where our
+  -- original points have moved to
+  for i = 1, length do
+    points[i].index = i + first - 1
   end
 
   -- Compute normals to all the line segments in the polyline
@@ -241,13 +251,16 @@ local function offset(points, d, polygon, first, last, X, Y)
   end
 
   -- Now we've got all the points we're keeping.  Offsetting them is easy.
-  local result = {}
+  local result, map = {}, {}
   for i = 1, #points do
     result[first+i-1] =
     {
       [X] = points[i][1] + d * directions[i][1],
       [Y] = points[i][2] + d * directions[i][2]
     }
+    if points[i].index then
+      map[points[i].index] = first+i-1
+    end
   end
 
   -- This is a bit of a nasty hack.  If the input is a closed polygon, then
@@ -261,7 +274,7 @@ local function offset(points, d, polygon, first, last, X, Y)
      result[#result+1] = { [X] = result[first][X], [Y] = result[first][Y] }
   end
 
-  return result
+  return result, map
 end
 
 
