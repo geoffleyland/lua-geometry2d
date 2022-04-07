@@ -1,5 +1,5 @@
 package = "geometry2d"
-version = "scm-3"
+version = "scm-4"
 source =
 {
   url = "https://github.com/geoffleyland/lua-geometry2d.git"
